@@ -1,0 +1,39 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+//added for this project
+$fa-font-path:"../webfonts";
+
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//added for this project
+@import '~admin-lte/dist/css/adminlte.css';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+
+
+.h-screen{
+    height:100vh;
+}
+
+[data-letters]:before {
+content:attr(data-letters);
+display:inline-block;
+font-size:1em;
+width:2.5em;
+height:2.5em;
+line-height:2.5em;
+text-align:center;
+border-radius:50%;
+background:#5d6ab4;
+vertical-align:middle;
+margin-right:.3em;
+color:white;
+}
