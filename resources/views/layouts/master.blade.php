@@ -217,18 +217,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </aside>
   @endauth
 
-    <main>
-      <div class="container">
-        <div class="row justify-content-center">
-            <div class="col">
-              <main class="pb-5">
-                <router-view></router-view>
-              </main>            
-            </div>
-          </div>
-      </div>
-    </main>
-  
+  <v-app>
+    <v-main>
+      <v-container fluid>
+        <v-row class="justify-center">
+          <v-col cols="12" md="8" lg="7">
+                  <router-view></router-view>
+          </v-col>
+          </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
   @auth
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

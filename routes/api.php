@@ -21,4 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources(['teachers' => 'API\TeacherController']);
 Route::apiResources(['students' => 'API\StudentController']);
 Route::apiResources(['employees' => 'API\EmployeeController']);
-Route::apiResources(['schoolStudentCandidates' => 'API\SchoolStudentCandidateController']);
+Route::apiResources(['schoolCandidates' => 'API\SchoolCandidateController']);
+Route::apiResources(['responsibles' => 'API\ResponsibleController']);
+Route::apiResources(['schoolCandidates.responsibles' => 'API\ResponsibleSchoolCandidateController']);
