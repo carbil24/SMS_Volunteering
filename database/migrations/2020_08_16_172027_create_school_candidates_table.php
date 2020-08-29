@@ -34,6 +34,8 @@ class CreateSchoolCandidatesTable extends Migration
             $table->string('situationOfParents');
             $table->string('situationOfTheChild');
             $table->longText('picture')->nullable();
+            $table->string('responsibleA')->nullable();
+            $table->string('responsibleB')->nullable();
             $table->timestamps();
         });
     }

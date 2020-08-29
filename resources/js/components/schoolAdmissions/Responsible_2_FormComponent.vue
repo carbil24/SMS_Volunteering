@@ -4,7 +4,7 @@
         <v-card-title class="blue darken-1">
             <v-row>
                 <v-col cols="12">
-                    <span class="white--text">Responsible A: {{ responsible2.relationship }} </span>
+                    <span class="white--text">Responsible B: {{ responsible2.relationship }} </span>
                 </v-col>               
             </v-row>
             <v-row>
@@ -237,161 +237,6 @@
                 </v-form>
             </v-card-text>
         </v-card>
-
-    <!--<el-form :inline="true" :model="responsible2" class="demo-form-inline" :rules="rules.responsible2Rules" ref="ruleResponsible2Form">
-
-        <div class="card card-primary">
-            <div class="card-header">
-                <div class="form-row mb-2 pl-lg-5">
-                  <h3 class="card-title" id="responsible2">Responsible A: {{ responsible2.relationship }} </h3>
-                </div>
-                <div class="form-row pl-lg-5">
-                  <el-form-item class="col-12 col-md-3 col-lg-3" prop="relationship">
-                    <label class="mr-3">Relationship with student </label>
-                    <el-autocomplete
-                        class="inline-input"
-                        v-model="responsible2.relationship"
-                        :fetch-suggestions="querySearch"
-                        placeholder="Relationship with the student"
-                        id="txtRelationship1"
-                        @select="handleSelect"
-                    ></el-autocomplete>
-                  </el-form-item>
-
-                  <el-form-item class="col-12 col-md-3 col-lg-3" prop="nationalId">
-                      <label>National Id</label>
-                      <el-input v-model="responsible2.nationalId" placeholder="Responsible's national Id"></el-input>
-                  </el-form-item>
-              </div>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-light" id="btnAddRelationship" data-target="#demo" data-toggle="collapse" title="Collapse">
-                  Add info</button>
-                </div>
-            </div>
-            <div id="demo" class="card-body collapse pl-lg-5">
-                    <div class="form-row m-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="firstName">
-                            <label>First Name</label>
-                            <el-input v-model="responsible2.firstName" placeholder="Responsible's first name" ></el-input>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="lastName">
-                            <label>Last Name</label>
-                            <el-input v-model="responsible2.lastName" placeholder="Responsible's last name"></el-input>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="middleName">
-                            <label>Middle Name</label>
-                            <el-input v-model="responsible2.middleName" placeholder="Responsible's middle name"></el-input>
-                        </el-form-item>
-                    </div>
-
-                    <div class="form-row m-3 pl-lg-5">
-                    
-                        <el-form-item class="col-6 col-md-5 col-lg-3" prop="dateOfBirth">
-                            <label>Date of birth</label>
-                            <el-date-picker
-                                v-model="responsible2.dateOfBirth"
-                                type="date"
-                                placeholder="Pick a date"
-                                default-value="2010-10-01">
-                            </el-date-picker>
-                        </el-form-item>
-
-                      
-                        <el-form-item class="col-6 col-md-3 col-lg-3" prop="gender">
-                            <label>Gender</label>
-                            <el-select v-model="responsible2.gender">
-                                <el-option label="Male" value="Male"></el-option>
-                                <el-option label="Female" value="Female"></el-option>
-                                <el-option label="Other" value="Other"></el-option>
-                                <el-option label="Prefer not to say" value="Prefer not to say"></el-option>
-                            </el-select>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="nationality">
-                            <label>Nationality</label>
-                            <el-input v-model="responsible2.nationality" placeholder="Responsible's nationality" ></el-input>
-                        </el-form-item>
-
-                    </div>
-
-                  
-                    <div class="form-row mt-3 ml-3 pl-lg-5">
-                        <label>Place of birth</label>
-                    </div>
-                    <div class="form-row mx-3 mb-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-4 col-lg-3">
-                            <el-form-item prop="countryOfBirth">
-                                <country-select class="custom-select" v-model="responsible2.countryOfBirth" :country="responsible2.countryOfBirth" topCountry="BI" />
-                            </el-form-item>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-4 col-lg-3">
-                            <el-form-item prop="regionOfBirth">
-                                <region-select class="custom-select" v-model="responsible2.regionOfBirth" :country="responsible2.countryOfBirth" :region="responsible2.regionOfBirth" />
-                            </el-form-item>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-4 col-lg-2">
-                            <el-form-item prop="cityOfBirth">
-                                <el-input v-model="responsible2.cityOfBirth" placeholder="City"></el-input>
-                            </el-form-item>
-                        </el-form-item>
-                    </div>
-
-                            
-                    <div class="form-row mt-3 ml-3 pl-lg-5">
-                        <label>Place of residency</label>
-                    </div>
-                    <div class="form-row mx-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-4 col-lg-3">
-                            <el-form-item prop="countryOfResidency">
-                                <country-select class="custom-select" v-model="responsible2.countryOfResidency" :country="responsible2.countryOfResidency" topCountry="BI" />
-                            </el-form-item>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-4 col-lg-3">
-                            <el-form-item prop="regionOfResidency">
-                                <region-select class="custom-select" v-model="responsible2.regionOfResidency" :country="responsible2.countryOfResidency" :region="responsible2.regionOfResidency" />
-                            </el-form-item>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-4 col-lg-2">
-                            <el-form-item prop="cityOfResidency">
-                                <el-input v-model="responsible2.cityOfResidency" placeholder="City"></el-input>
-                            </el-form-item>
-                        </el-form-item>
-                    </div>
-
-                    <div class="form-row ml-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-4 col-lg-3" prop="address">
-                            <el-input v-model="responsible2.address" placeholder="Address"></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-12 col-md-4 col-lg-3" prop="postalCode">
-                            <el-input v-model="responsible2.postalCode" placeholder="Postal Code" ></el-input>
-                        </el-form-item>
-                    </div>
-
-                    <div class="form-row m-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="homePhone">
-                            <label>Home phone</label>
-                            <el-input v-model="responsible2.homePhone" placeholder="Responsible's home phone" ></el-input>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="workPhone">
-                            <label>Work phone</label>
-                            <el-input v-model="responsible2.workPhone" placeholder="Responsible's work phone"></el-input>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="email">
-                            <label>Email</label>
-                            <el-input v-model="responsible2.email" placeholder="Responsible's email"></el-input>
-                        </el-form-item>
-                    </div>
-            </div>
-        </div>
-      </el-form>-->
 </template>
 
 <script>
@@ -402,6 +247,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(Element)
 
 export default {
+    props: ['responsibleB', 'relationshipB'],
   data() {
     return {
       showForm: null,
@@ -490,6 +336,7 @@ export default {
         { value: "Other"},
         { value: "Unspecified"},
       ],
+        responsibleBB: '',
     }
   },
   methods: {
@@ -498,7 +345,7 @@ export default {
             return this.$refs.ruleResponsible2Form3.validate();
         }
         else{
-            //this.setData();
+            this.setData();
             this.$refs.ruleResponsible2Form.validate()
             if(!this.responsible2.countryOfBirth || !this.responsible2.regionOfBirth ||
                 !this.responsible2.countryOfResidency || !this.responsible2.regionOfResidency){
@@ -537,6 +384,37 @@ export default {
         }
         this.$emit('clickShowForm', this.showForm);
       },
+    setData(){
+        this.responsibleBB = this.responsible2;
+        this.$emit('responsibleBB', this.responsibleBB);
+    },
+    showInfo(){
+        if(this.responsibleB){
+            this.showForm = !this.showForm
+            this.responsible2.id = this.responsibleB.id;
+            this.responsible2.nationalId = this.responsibleB.nationalId;
+            this.responsible2.relationship = this.relationshipB;
+            this.responsible2.firstName = this.responsibleB.firstName;
+            this.responsible2.lastName = this.responsibleB.lastName;
+            this.responsible2.middleName = this.responsibleB.middleName;
+            this.responsible2.dateOfBirth = this.responsibleB.dateOfBirth;
+            this.responsible2.gender = this.responsibleB.gender;
+            this.responsible2.nationality = this.responsibleB.nationality;
+            this.responsible2.countryOfBirth = this.responsibleB.countryOfBirth;
+            this.responsible2.regionOfBirth = this.responsibleB.regionOfBirth;
+            this.responsible2.cityOfBirth = this.responsibleB.cityOfBirth;
+            this.responsible2.countryOfResidency = this.responsibleB.countryOfResidency;
+            this.responsible2.regionOfResidency = this.responsibleB.regionOfResidency;
+            this.responsible2.cityOfResidency = this.responsibleB.cityOfResidency;
+            this.responsible2.address = this.responsibleB.address;
+            this.responsible2.postalCode = this.responsibleB.postalCode;
+            this.responsible2.homePhone = this.responsibleB.homePhone;
+            this.responsible2.workPhone = this.responsibleB.workPhone;
+            this.responsible2.email = this.responsibleB.email;
+
+            this.validateSecondStep();
+        }
+    },
   },
   watch: {
       menu (val) {

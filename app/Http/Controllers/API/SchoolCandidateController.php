@@ -48,6 +48,9 @@ class SchoolCandidateController extends Controller
         $schoolCandidate->situationOfParents = $request->situationOfParents;
         $schoolCandidate->situationOfTheChild = $request->situationOfTheChild;
         $schoolCandidate->picture = $request->picture;
+        $schoolCandidate->responsibleA = $request->responsibleA;
+        $schoolCandidate->responsibleB = $request->responsibleB;
+
         $schoolCandidate->save();
 
         return $schoolCandidate;    
@@ -94,6 +97,8 @@ class SchoolCandidateController extends Controller
         $schoolCandidate->situationOfParents = $request->situationOfParents;
         $schoolCandidate->situationOfTheChild = $request->situationOfTheChild;
         $schoolCandidate->picture = $request->picture;
+        $schoolCandidate->responsibleA = $request->responsibleA;
+        $schoolCandidate->responsibleB = $request->responsibleB;
         $schoolCandidate->save();
     }
 

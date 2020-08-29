@@ -11,7 +11,11 @@
 
         <tab-content title="Responsibles Information" icon="fas fa-users" :before-change="validateSecondStep">
           <responsible-admissions-section ref="responsibles" :responsibleA = "responsibleA"
-                                                             @responsibleA = "responsibleAAction"/>
+                                                             :relationshipA = "relationshipA"
+                                                             @responsibleAA = "responsibleAAction"
+                                                             :responsibleB = "responsibleB"
+                                                             :relationshipB = "relationshipB"
+                                                             @responsibleBB = "responsibleBAction"/>
         </tab-content>
 
 
@@ -59,10 +63,14 @@ export default {
       schoolCandidate: '',
       responsibles: [],
       responsibleA: '',
+      responsibleAA: '',
       responsibleB: '',
+      responsibleBB: '',
       students_responsibles: [],
       nationalId: '',
       typeOfAdmission:'',
+      relationshipA: '',
+      relationshipB: '',
       editMode: false,
     }
   },
@@ -89,6 +97,9 @@ export default {
         if (result.value) {
           if(this.editMode){
               axios.put(`api/schoolCandidates/${this.schoolCandidate.id}`, this.schoolCandidate)
+              axios.put(`api/responsibles/${this.responsibleAA.id}`, this.responsibleAA)
+              axios.put(`api/responsibles/${this.responsibleBB.id}`, this.responsibleBB)
+
               Swal.fire({
               icon: 'success',
               title: "Your application was updated successfully!",
@@ -99,17 +110,30 @@ export default {
             })
           }
           else{
+            this.schoolCandidate.responsibleA = this.responsibleAA.relationship;
+            this.schoolCandidate.responsibleB = this.responsibleBB.relationship;
             axios.post('api/schoolCandidates', this.schoolCandidate)
             .then((res) =>{
               this.schoolCandidate = res.data;
-            });
-            axios.post('api/responsibles', this.responsibleA)
+              axios.post('api/responsibles', this.responsibleAA)
               .then((res) =>{
-                this.responsibleA = res.data;
+                  this.responsibleAA = res.data;
+                  axios.post(`api/schoolCandidates/${this.schoolCandidate.id}/responsibles`, this.responsibleAA)                     
+                  .then((res) =>{
+                  console.log(res.data);
+                })
+                axios.post('api/responsibles', this.responsibleBB)
+                .then((res) =>{
+                    this.responsibleBB = res.data;
+                    axios.post(`api/schoolCandidates/${this.schoolCandidate.id}/responsibles`, this.responsibleBB)                     
+                    .then((res) =>{
+                    console.log(res.data);
+                  })
+                });
+              });
+
             });
-            axios.post(`api/schoolCandidates/1/responsibles`, this.responsibleA)
-              
-            
+
             Swal.fire({
               icon: 'success',
               title: "Congratulations! your Registration process is done! You'll get feedback in 3 business days.",
@@ -180,8 +204,7 @@ export default {
           this.typeOfAdmission = result.value[1];
 
           this.schoolCandidate = this.schoolCandidates.find(el => el.nationalId === this.nationalId && 
-                                                                                el.typeOfAdmission === this.typeOfAdmission);
-
+                                                                  el.typeOfAdmission === this.typeOfAdmission);
 
           let timerInterval;
           Swal.fire({
@@ -204,6 +227,7 @@ export default {
             },
           }).then((result) => {
             this.$refs.student.showInfo();
+
             if(!this.schoolCandidate){
               Swal.fire({
                 title: 'Candidate Verification',
@@ -220,9 +244,11 @@ export default {
               })
             }
             else{
-              axios.get(`api/schoolCandidates/${this.schoolCandidate.id}/responsibles`).then(res=>{
+              this.relationshipA = this.schoolCandidate.responsibleA;
+              this.relationshipB = this.schoolCandidate.responsibleB;
+              axios.get(`api/schoolCandidates/${this.schoolCandidate.id}/responsibles`)
+              .then(res=>{
                 this.students_responsibles = res.data;
-                //console.log(this.students_responsibles);
               });
 
               Swal.fire({
@@ -235,6 +261,13 @@ export default {
                 if(!result.value)
                   window.location.replace("/");
                 else{
+                  
+                  this.responsibleA = this.responsibles.find(el => el.id === this.students_responsibles[0].responsible_id);
+                  this.responsibleB = this.responsibles.find(el => el.id === this.students_responsibles[1].responsible_id);
+
+                  //console.log(this.responsibleA)
+
+
                   Swal.fire({
                     title: 'Please select an option to continue',
                     input: 'radio',
@@ -251,6 +284,9 @@ export default {
                     if(!result.value)
                       window.location.replace("/");
                     else{
+                      this.$refs.responsibles.showResponsibleAInfo();
+                      this.$refs.responsibles.showResponsibleBInfo();
+
                       if(result.value == 'update'){
                         this.editMode = true;
                       }
@@ -297,7 +333,10 @@ export default {
       this.schoolCandidate = data;
     },
     responsibleAAction(data){
-      this.responsibleA = data;
+      this.responsibleAA = data;
+    },
+    responsibleBAction(data){
+      this.responsibleBB = data;
     },
     scrollToTop() {
       window.scrollTo(0,0);

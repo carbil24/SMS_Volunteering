@@ -237,161 +237,6 @@
                 </v-form>
             </v-card-text>
         </v-card>
-
-    <!--<el-form :inline="true" :model="responsible1" class="demo-form-inline" :rules="rules.responsible1Rules" ref="ruleResponsible1Form">
-
-        <div class="card card-primary">
-            <div class="card-header">
-                <div class="form-row mb-2 pl-lg-5">
-                  <h3 class="card-title" id="responsible1">Responsible A: {{ responsible1.relationship }} </h3>
-                </div>
-                <div class="form-row pl-lg-5">
-                  <el-form-item class="col-12 col-md-3 col-lg-3" prop="relationship">
-                    <label class="mr-3">Relationship with student </label>
-                    <el-autocomplete
-                        class="inline-input"
-                        v-model="responsible1.relationship"
-                        :fetch-suggestions="querySearch"
-                        placeholder="Relationship with the student"
-                        id="txtRelationship1"
-                        @select="handleSelect"
-                    ></el-autocomplete>
-                  </el-form-item>
-
-                  <el-form-item class="col-12 col-md-3 col-lg-3" prop="nationalId">
-                      <label>National Id</label>
-                      <el-input v-model="responsible1.nationalId" placeholder="Responsible's national Id"></el-input>
-                  </el-form-item>
-              </div>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-light" id="btnAddRelationship" data-target="#demo" data-toggle="collapse" title="Collapse">
-                  Add info</button>
-                </div>
-            </div>
-            <div id="demo" class="card-body collapse pl-lg-5">
-                    <div class="form-row m-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="firstName">
-                            <label>First Name</label>
-                            <el-input v-model="responsible1.firstName" placeholder="Responsible's first name" ></el-input>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="lastName">
-                            <label>Last Name</label>
-                            <el-input v-model="responsible1.lastName" placeholder="Responsible's last name"></el-input>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="middleName">
-                            <label>Middle Name</label>
-                            <el-input v-model="responsible1.middleName" placeholder="Responsible's middle name"></el-input>
-                        </el-form-item>
-                    </div>
-
-                    <div class="form-row m-3 pl-lg-5">
-                    
-                        <el-form-item class="col-6 col-md-5 col-lg-3" prop="dateOfBirth">
-                            <label>Date of birth</label>
-                            <el-date-picker
-                                v-model="responsible1.dateOfBirth"
-                                type="date"
-                                placeholder="Pick a date"
-                                default-value="2010-10-01">
-                            </el-date-picker>
-                        </el-form-item>
-
-                      
-                        <el-form-item class="col-6 col-md-3 col-lg-3" prop="gender">
-                            <label>Gender</label>
-                            <el-select v-model="responsible1.gender">
-                                <el-option label="Male" value="Male"></el-option>
-                                <el-option label="Female" value="Female"></el-option>
-                                <el-option label="Other" value="Other"></el-option>
-                                <el-option label="Prefer not to say" value="Prefer not to say"></el-option>
-                            </el-select>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="nationality">
-                            <label>Nationality</label>
-                            <el-input v-model="responsible1.nationality" placeholder="Responsible's nationality" ></el-input>
-                        </el-form-item>
-
-                    </div>
-
-                  
-                    <div class="form-row mt-3 ml-3 pl-lg-5">
-                        <label>Place of birth</label>
-                    </div>
-                    <div class="form-row mx-3 mb-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-4 col-lg-3">
-                            <el-form-item prop="countryOfBirth">
-                                <country-select class="custom-select" v-model="responsible1.countryOfBirth" :country="responsible1.countryOfBirth" topCountry="BI" />
-                            </el-form-item>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-4 col-lg-3">
-                            <el-form-item prop="regionOfBirth">
-                                <region-select class="custom-select" v-model="responsible1.regionOfBirth" :country="responsible1.countryOfBirth" :region="responsible1.regionOfBirth" />
-                            </el-form-item>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-4 col-lg-2">
-                            <el-form-item prop="cityOfBirth">
-                                <el-input v-model="responsible1.cityOfBirth" placeholder="City"></el-input>
-                            </el-form-item>
-                        </el-form-item>
-                    </div>
-
-                            
-                    <div class="form-row mt-3 ml-3 pl-lg-5">
-                        <label>Place of residency</label>
-                    </div>
-                    <div class="form-row mx-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-4 col-lg-3">
-                            <el-form-item prop="countryOfResidency">
-                                <country-select class="custom-select" v-model="responsible1.countryOfResidency" :country="responsible1.countryOfResidency" topCountry="BI" />
-                            </el-form-item>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-4 col-lg-3">
-                            <el-form-item prop="regionOfResidency">
-                                <region-select class="custom-select" v-model="responsible1.regionOfResidency" :country="responsible1.countryOfResidency" :region="responsible1.regionOfResidency" />
-                            </el-form-item>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-4 col-lg-2">
-                            <el-form-item prop="cityOfResidency">
-                                <el-input v-model="responsible1.cityOfResidency" placeholder="City"></el-input>
-                            </el-form-item>
-                        </el-form-item>
-                    </div>
-
-                    <div class="form-row ml-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-4 col-lg-3" prop="address">
-                            <el-input v-model="responsible1.address" placeholder="Address"></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-12 col-md-4 col-lg-3" prop="postalCode">
-                            <el-input v-model="responsible1.postalCode" placeholder="Postal Code" ></el-input>
-                        </el-form-item>
-                    </div>
-
-                    <div class="form-row m-3 pl-lg-5">
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="homePhone">
-                            <label>Home phone</label>
-                            <el-input v-model="responsible1.homePhone" placeholder="Responsible's home phone" ></el-input>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="workPhone">
-                            <label>Work phone</label>
-                            <el-input v-model="responsible1.workPhone" placeholder="Responsible's work phone"></el-input>
-                        </el-form-item>
-
-                        <el-form-item class="col-12 col-md-3 col-lg-3" prop="email">
-                            <label>Email</label>
-                            <el-input v-model="responsible1.email" placeholder="Responsible's email"></el-input>
-                        </el-form-item>
-                    </div>
-            </div>
-        </div>
-      </el-form>-->
 </template>
 
 <script>
@@ -402,7 +247,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(Element)
 
 export default {
-    props: ['responsibleA'],
+    props: ['responsibleA', 'relationshipA'],
   data() {
     return {
       showForm: null,
@@ -491,7 +336,7 @@ export default {
         { value: "Other"},
         { value: "Unspecified"},
       ],
-        mutableResponsibleA: this.responsibleA,
+        responsibleAA: '',
     }
   },
   methods: {
@@ -540,14 +385,15 @@ export default {
         this.$emit('clickShowForm', this.showForm);
       },
     setData(){
-        this.mutableResponsibleA = this.responsible1;
-        this.$emit('responsibleA', this.mutableResponsibleA);
+        this.responsibleAA = this.responsible1;
+        this.$emit('responsibleAA', this.responsibleAA);
     },
     showInfo(){
         if(this.responsibleA){
+            this.showForm = !this.showForm
             this.responsible1.id = this.responsibleA.id;
             this.responsible1.nationalId = this.responsibleA.nationalId;
-            this.responsible1.relationship = this.responsibleA.relationship;
+            this.responsible1.relationship = this.relationshipA;
             this.responsible1.firstName = this.responsibleA.firstName;
             this.responsible1.lastName = this.responsibleA.lastName;
             this.responsible1.middleName = this.responsibleA.middleName;

@@ -18,10 +18,10 @@ class ResponsibleSchoolCandidateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SchoolCandidate $schoolCandidate)
+    public function index($id)
     {
         $junctions = DB::table('responsible_school_candidate')
-        ->where('school_candidate_id', '=', $schoolCandidate->id)
+        ->where('school_candidate_id', '=', $id)
         ->get(); 
         
         return $junctions;
@@ -33,16 +33,25 @@ class ResponsibleSchoolCandidateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, SchoolCandidate $schoolCandidate, Responsible $responsible)
+    public function store(Request $request, $id)
     {
-        $schoolCandidate = SchoolCandidate::find($schoolCandidate->id);
-        $schoolCandidate->responsibles()->attach($responsible->id);
+        $schoolCandidate = SchoolCandidate::find($id);
+        $schoolCandidate->responsibles()->attach($request->id);
         
-        $schoolCandidate->responsibles()->update([
-            'relationship' => $request->relationship,
-        ]);
+        if($schoolCandidate->responsibleA == null){
+            $schoolCandidate->responsibles()->where('id', $request->id)->update([
+                'relationship' => $schoolCandidate->responsibleA,
+            ]);
+        }
+        else{
+            $schoolCandidate->responsibles()->where('id', $request->id)->update([
+                'relationship' => $schoolCandidate->responsibleA,
+            ]);
+        }
 
-        return $schoolCandidate;
+
+
+        return $request;
     }
 
     /**

@@ -89,7 +89,7 @@
                             </v-col>
                             <v-col cols="12" md="4" lg="4">
                                 <v-col cols="12" xs="8" class="text-xs-center text-sm-center text-md-center text-lg-center">
-                                <v-text-field label="Select Image" @click='pickFile' v-model='student.picture' prepend-icon='add_a_photo'></v-text-field>
+                                <v-text-field label="Select Image" @click='pickFile' v-model='student.picture' prepend-icon='mdi-camera-plus'></v-text-field>
                                 <input
                                     type="file"
                                     style="display: none"
@@ -216,7 +216,7 @@ export default {
             student:{
                     nationalId: '', typeOfAdmission: '', firstName: '', lastName: '', middleName: '', dateOfBirth:'', gender:'', nationality:'', countryOfBirth: '', 
                     regionOfBirth: '', cityOfBirth: '', countryOfResidency: '', regionOfResidency: '', cityOfResidency: '', address: '',
-                    postalCode: '', situationOfParents: '', situationOfTheChild: '', picture: '',
+                    postalCode: '', situationOfParents: '', situationOfTheChild: '', picture: '', responsibleA: '', responsibleB: '' 
                   },
             rules:  {
                 studentRules:{

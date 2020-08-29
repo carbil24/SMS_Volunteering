@@ -1,11 +1,17 @@
 <template>
   <div>
     <responsible1-admissions-form ref="reponsible1" @clickShowForm="showForm = $event" 
-                                                    :responsibleA = "mutableResponsibleA"
-                                                    @responsibleA = "responsibleAAction" 
+                                                    :responsibleA = "responsibleA"
+                                                    :relationshipA = "relationshipA"
+                                                    @responsibleAA = "responsibleAAction" 
                                                     class="mt-3">
     </responsible1-admissions-form>
-    <responsible2-admissions-form v-if="responsible2Added" ref="reponsible2"></responsible2-admissions-form>
+    <responsible2-admissions-form v-if="responsible2Added" ref="reponsible2"
+                                                    :responsibleB = "responsibleB"
+                                                    :relationshipB = "relationshipB"
+                                                    @responsibleBB = "responsibleBAction" >
+    </responsible2-admissions-form>
+
     <v-btn type="button" 
             class="blue darken-1 mt-2"  
             @click="addResponsible"
@@ -19,13 +25,12 @@
 
 <script>
 export default {
-  props: ['responsibleA'],
+  props: ['responsibleA', 'responsibleB', 'relationshipA', 'relationshipB'],
 
 data() {
     return {
       responsible2Added: false,
       showForm: '',
-      mutableResponsibleA: this.responsibleA
     }
   },
   methods: {
@@ -59,10 +64,19 @@ data() {
         }
     },
     responsibleAAction(data){
-      this.mutableResponsibleA = data;
-      this.$emit('responsibleA', this.mutableResponsibleA); 
-      console.log(this.mutableResponsibleA)   
+      this.$emit('responsibleAA', data); 
+      console.log(data)   
     },
+    responsibleBAction(data){
+      this.$emit('responsibleBB', data); 
+      console.log(data)   
+    },
+    showResponsibleAInfo(){
+      this.$refs.reponsible1.showInfo()
+    },
+    showResponsibleBInfo(){
+      this.$refs.reponsible2.showInfo()
+    }
   },
 
 
